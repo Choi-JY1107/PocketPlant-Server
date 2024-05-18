@@ -3,6 +3,7 @@ package com.example.plantfinder.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.plantfinder.dto.PlantResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,19 +29,22 @@ public class PlantController {
     private final PlantService plantService;
     private final S3Service s3Service;
 
-    @GetMapping
-    public List<Plant> getAllPlants() {
-        List<Plant> plantList = plantService.getAllPlants();
 
-        return plantList;
+    @GetMapping
+    public List<PlantResponse> getAllPlants() {
+        return plantService.getAllPlants();
     }
 
     @GetMapping("/{id}")
-    public Optional<Plant> getPlantById(@PathVariable final String id) {
-        Optional<Plant> plant = plantService.getPlantById(id);
-
-        return plant;
+    public PlantResponse getPlantById(@PathVariable final String id) {
+        return plantService.getPlantById(id);
     }
+
+    @GetMapping("/type/{type}")
+    public List<PlantResponse> getPlantsByType(@PathVariable final String type) {
+        return plantService.getPlantByType(type);
+    }
+
 
     @PostMapping
     public String createPlant(@RequestBody final PlantAddRequest plantAddRequest) {
