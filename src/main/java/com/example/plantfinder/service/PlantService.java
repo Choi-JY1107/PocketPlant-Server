@@ -25,6 +25,10 @@ public class PlantService {
         return new PlantResponse(plantRepository.findById(id).orElseThrow(() -> new RuntimeException("식물이 없어요")));
     }
 
+    public List<PlantResponse> getPlantByType(final String type) {
+        return plantRepository.findByName(type).stream().map(PlantResponse::new).toList();
+    }
+
     public String savePlant(final PlantAddRequest plantAddRequest) {
         final Plant plant = new Plant(plantAddRequest.getName(), plantAddRequest.getImageUrl(),
                 plantAddRequest.getLocation(), plantAddRequest.getLatitude(),
@@ -39,4 +43,5 @@ public class PlantService {
 
         return new IsPlantResponse(isPlant, imageUrl);
     }
+
 }

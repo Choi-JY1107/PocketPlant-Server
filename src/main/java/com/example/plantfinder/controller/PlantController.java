@@ -36,6 +36,11 @@ public class PlantController {
         return plantService.getPlantById(id);
     }
 
+    @GetMapping("/type/{type}")
+    public List<PlantResponse> getPlantsByType(@PathVariable final String type) {
+        return plantService.getPlantByType(type);
+    }
+
     @PostMapping("/upload")
     public IsPlantResponse uploadImage(final MultipartFile file) {
         final String url = s3Service.upload(file);
