@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.plantfinder.dto.PlantResponse;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
 import com.example.plantfinder.dto.IsPlantResponse;
@@ -35,15 +33,45 @@ public class PlantService {
         return new PlantResponse(plantRepository.findById(id).orElseThrow(() -> new RuntimeException("식물이 없어요")));
     }
 
-    public String savePlant(final PlantAddRequest plantAddRequest) {
-        final Plant plant = new Plant(plantAddRequest.getName(), plantAddRequest.getImageUrl(),
-                plantAddRequest.getLocation(), plantAddRequest.getLatitude(),
-                plantAddRequest.getLongitude(), plantAddRequest.getDescription());
+    public PlantResponse savePlant(final PlantAddRequest plantAddRequest) {
+
+        var plantName = checkPlant(plantAddRequest.getImageUrl());
+        if (plantRepository == null) {
+            return null;
+        }
+        var plant = Plant.builder()
+            .name(plantName)
+            .imageUrl(plantAddRequest.getImageUrl())
+            .latitude(plantAddRequest.getLatitude())
+            .longitude(plantAddRequest.getLongitude())
+            .location(plantAddRequest.getLocation())
+            .description(plantAddRequest.getDescription())
+            .build();
+
         plantRepository.save(plant);
 
-        System.out.println(plant.getId());
 
-        return plant.getId();
+        return new PlantResponse(plant);
+    }
+
+    private String checkPlant(final String imageUrl){
+        var splitArr = imageUrl.split("/");
+        var imageUuid = splitArr[splitArr.length - 1];
+
+        String url = "https://o3i6cdavx7.execute-api.ap-northeast-2.amazonaws.com/dev/custom";
+        RestTemplate restTemplate = new RestTemplate();
+
+        String jsonBody = "{ \"bucket\": \"flower-test-dataset\", \"name\": \""+imageUuid+"\"}";
+
+        System.out.println(jsonBody);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>(jsonBody, headers);
+
+        String response = restTemplate.postForObject(url, request, String.class);
+        return response;
+
     }
 
     public IsPlantResponse isPlant(final String imageUrl) {

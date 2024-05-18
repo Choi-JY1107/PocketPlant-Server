@@ -2,6 +2,7 @@ package com.example.plantfinder.entity;
 
 import java.time.LocalDateTime;
 
+import lombok.Builder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -36,6 +37,7 @@ public class Plant {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
+    @Builder
     public Plant(String name, String imageUrl, String location, String latitude, String longitude, String description) {
         this.name = name;
         this.imageUrl = imageUrl;
@@ -44,4 +46,6 @@ public class Plant {
         this.longitude = longitude;
         this.description = description;
     }
+
+
 }

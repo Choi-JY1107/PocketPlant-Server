@@ -47,10 +47,8 @@ public class PlantController {
 
 
     @PostMapping
-    public String createPlant(@RequestBody final PlantAddRequest plantAddRequest) {
-        final String plantId = plantService.savePlant(plantAddRequest);
-
-        return plantId;
+    public PlantResponse createPlant(@RequestBody final PlantAddRequest plantAddRequest) {
+        return plantService.savePlant(plantAddRequest);
     }
 
     @PostMapping("/upload")
