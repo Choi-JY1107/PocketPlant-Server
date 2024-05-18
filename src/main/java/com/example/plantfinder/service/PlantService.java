@@ -2,8 +2,8 @@ package com.example.plantfinder.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import com.example.plantfinder.data.Description;
 import com.example.plantfinder.dto.PlantResponse;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -11,12 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.plantfinder.dto.IsPlantResponse;
 import com.example.plantfinder.dto.PlantAddRequest;
-import com.example.plantfinder.dto.PlantResponse;
 import com.example.plantfinder.entity.Plant;
 import com.example.plantfinder.repository.PlantRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
