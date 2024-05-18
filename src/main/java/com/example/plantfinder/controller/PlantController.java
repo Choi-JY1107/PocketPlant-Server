@@ -53,7 +53,7 @@ public class PlantController {
     public IsPlantResponse uploadImage(MultipartFile file) {
         final String url = s3Service.upload(file);
         final IsPlantResponse isPlantResponse = plantService.isPlant(url);
-
+        System.out.println(isPlantResponse.toString());
         return isPlantResponse;
     }
 
