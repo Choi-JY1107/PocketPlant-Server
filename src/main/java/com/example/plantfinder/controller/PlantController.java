@@ -28,31 +28,24 @@ public class PlantController {
 
     @GetMapping
     public List<PlantResponse> getAllPlants() {
-        List<PlantResponse> plantList = plantService.getAllPlants();
-
-        return plantList;
+        return plantService.getAllPlants();
     }
 
     @GetMapping("/{id}")
     public PlantResponse getPlantById(@PathVariable final String id) {
-        PlantResponse plant = plantService.getPlantById(id);
-
-        return plant;
+        return plantService.getPlantById(id);
     }
 
     @PostMapping
     public String createPlant(@RequestBody final PlantAddRequest plantAddRequest) {
-        final String plantId = plantService.savePlant(plantAddRequest);
-
-        return plantId;
+        return plantService.savePlant(plantAddRequest);
     }
 
     @PostMapping("/upload")
     public IsPlantResponse uploadImage(MultipartFile file) {
         final String url = s3Service.upload(file);
-        final IsPlantResponse isPlantResponse = plantService.isPlant(url);
 
-        return isPlantResponse;
+        return plantService.isPlant(url);
     }
 
 }

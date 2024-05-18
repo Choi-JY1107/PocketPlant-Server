@@ -35,15 +35,12 @@ public class PlantService {
                 plantAddRequest.getLongitude(), plantAddRequest.getDescription());
         plantRepository.save(plant);
 
-        System.out.println(plant.getId());
-
         return plant.getId();
     }
 
     public IsPlantResponse isPlant(final String imageUrl) {
         final Boolean isPlant = true;   // TODO Plant 인지 아닌지 판단하는 함수 추가해줘
-        final IsPlantResponse isPlantResponse = new IsPlantResponse(isPlant, imageUrl);
 
-        return isPlantResponse;
+        return new IsPlantResponse(isPlant, imageUrl);
     }
 }
