@@ -1,5 +1,7 @@
 package com.example.plantfinder.entity;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -32,7 +34,7 @@ public class Plant {
 
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     public Plant(String name, String imageUrl, String location, String latitude, String longitude, String description) {
         this.name = name;
