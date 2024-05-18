@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.plantfinder.dto.IsPlantResponse;
 import com.example.plantfinder.dto.PlantAddRequest;
 import com.example.plantfinder.entity.Plant;
 import com.example.plantfinder.repository.PlantRepository;
@@ -37,5 +38,12 @@ public class PlantService {
         System.out.println(plant.getId());
 
         return plant.getId();
+    }
+
+    public IsPlantResponse isPlant(final String imageUrl) {
+        final Boolean isPlant = true;   // TODO Plant 인지 아닌지 판단하는 함수 추가해줘
+        final IsPlantResponse isPlantResponse = new IsPlantResponse(isPlant, imageUrl);
+
+        return isPlantResponse;
     }
 }

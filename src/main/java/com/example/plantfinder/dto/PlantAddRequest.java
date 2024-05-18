@@ -1,5 +1,10 @@
 package com.example.plantfinder.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class PlantAddRequest {
     private String name;
     private String imageUrl;
@@ -8,27 +13,4 @@ public class PlantAddRequest {
     private String longitude;
     private String description;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 }
