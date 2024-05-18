@@ -1,12 +1,12 @@
 package com.example.plantfinder.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.plantfinder.dto.IsPlantResponse;
 import com.example.plantfinder.dto.PlantAddRequest;
+import com.example.plantfinder.dto.PlantResponse;
 import com.example.plantfinder.entity.Plant;
 import com.example.plantfinder.repository.PlantRepository;
 
@@ -17,16 +17,16 @@ import lombok.RequiredArgsConstructor;
 public class PlantService {
     private final PlantRepository plantRepository;
 
-    public List<Plant> getAllPlants() {
-        var s = plantRepository.findAll();
-        System.out.println(s);
-        return s;
+    public List<PlantResponse> getAllPlants() {
+        return plantRepository.findAll().stream().map(PlantResponse::new).toList();
     }
 
-    public Optional<Plant> getPlantById(final String id) {
-        final Optional<Plant> plant = plantRepository.findById(id);
+    public PlantResponse getPlantById(final String id) {
+        final var plant = plantRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("식물이 없어요")
+        );
 
-        return plant;
+        return new PlantResponse(plant);
     }
 
     public String savePlant(final PlantAddRequest plantAddRequest) {
