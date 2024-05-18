@@ -22,11 +22,7 @@ public class PlantService {
     }
 
     public PlantResponse getPlantById(final String id) {
-        final var plant = plantRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("식물이 없어요")
-        );
-
-        return new PlantResponse(plant);
+        return new PlantResponse(plantRepository.findById(id).orElseThrow(() -> new RuntimeException("식물이 없어요")));
     }
 
     public String savePlant(final PlantAddRequest plantAddRequest) {

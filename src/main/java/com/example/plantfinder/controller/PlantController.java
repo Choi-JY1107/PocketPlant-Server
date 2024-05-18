@@ -36,16 +36,16 @@ public class PlantController {
         return plantService.getPlantById(id);
     }
 
-    @PostMapping
-    public String createPlant(@RequestBody final PlantAddRequest plantAddRequest) {
-        return plantService.savePlant(plantAddRequest);
-    }
-
     @PostMapping("/upload")
-    public IsPlantResponse uploadImage(MultipartFile file) {
+    public IsPlantResponse uploadImage(final MultipartFile file) {
         final String url = s3Service.upload(file);
 
         return plantService.isPlant(url);
+    }
+
+    @PostMapping
+    public String createPlant(@RequestBody final PlantAddRequest plantAddRequest) {
+        return plantService.savePlant(plantAddRequest);
     }
 
 }
