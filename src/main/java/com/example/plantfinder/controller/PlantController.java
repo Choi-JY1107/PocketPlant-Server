@@ -58,4 +58,9 @@ public class PlantController {
         return isPlantResponse;
     }
 
+    @GetMapping("/location/{location}")
+    public List<PlantResponse> getPlantsByLocation(@PathVariable String location){
+        return plantService.getPlantsByLocation(location);
+    }
+
 }

@@ -9,4 +9,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PlantRepository extends MongoRepository<Plant, String> {
     List<Plant> findByName(String type);
+    List<Plant> findPlantByLocation(String location);
 }

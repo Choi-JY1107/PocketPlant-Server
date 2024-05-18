@@ -60,7 +60,6 @@ public class PlantService {
 
         String jsonBody = "{ \"bucket\": \"flower-test-dataset\", \"name\": \""+imageUuid+"\"}";
 
-        System.out.println(jsonBody);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -112,5 +111,16 @@ public class PlantService {
             return new IsPlantResponse(true, imageUrl, name);
         }
         return new IsPlantResponse(false, imageUrl, null);
+    }
+
+    public List<PlantResponse> getPlantsByLocation(String location){
+        List<PlantResponse> plantResList= new ArrayList<>();
+        var plantList = plantRepository.findPlantByLocation(location);
+
+        for(Plant plant: plantList){
+            var x = new PlantResponse(plant);
+            plantResList.add(x);
+        }
+        return plantResList;
     }
 }
