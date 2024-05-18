@@ -5,4 +5,4 @@ spring:
     include: private
   data:
     mongodb:
-      uri: mongodb+srv://jihak:MKhhL7Wnu4lVxd3e@cluster0.kv5caik.mongodb.net/mintoDB?retryWrites=true&w=majority
+      uri: mongodb+srv://admin:R7x3uBDzsmQNC14x@cluster0.ai8o1gq.mongodb.net/union?retryWrites=true&w=majority
