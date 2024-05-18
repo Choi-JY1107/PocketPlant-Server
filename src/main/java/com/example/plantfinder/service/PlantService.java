@@ -35,12 +35,9 @@ public class PlantService {
 
     public PlantResponse savePlant(final PlantAddRequest plantAddRequest) {
 
-        var plantName = checkPlant(plantAddRequest.getImageUrl());
-        if (plantRepository == null) {
-            return null;
-        }
+
         var plant = Plant.builder()
-            .name(plantName)
+            .name(plantAddRequest.getName())
             .imageUrl(plantAddRequest.getImageUrl())
             .latitude(plantAddRequest.getLatitude())
             .longitude(plantAddRequest.getLongitude())
@@ -77,7 +74,7 @@ public class PlantService {
     public IsPlantResponse isPlant(final String imageUrl) {
         var splitArr = imageUrl.split("/");
         var imageUuid = splitArr[splitArr.length - 1];
-
+        var isPlant = false;
         String url = "https://o3i6cdavx7.execute-api.ap-northeast-2.amazonaws.com/dev/detect";
         RestTemplate restTemplate = new RestTemplate();
 
@@ -91,20 +88,29 @@ public class PlantService {
 
         for (Object object : response) {
             if (object.toString().equals("Fruit")){
-                return new IsPlantResponse(true, imageUrl);
+                checkPlant(imageUrl);
+                isPlant = true;
+                break;
             }
             else if(object.toString().equals("Plant")){
-                return new IsPlantResponse(true, imageUrl);
+                checkPlant(imageUrl);
+                isPlant = true;
+                break;
 
             }
             else if(object.toString().equals("Flower")){
-                return new IsPlantResponse(true, imageUrl);
+                checkPlant(imageUrl);
+                isPlant = true;
+                break;
 
             }
 
-
         }
 
-        return new IsPlantResponse(false, imageUrl);
+        if (isPlant){
+            var name = checkPlant(imageUrl);
+            return new IsPlantResponse(true, imageUrl, name);
+        }
+        return new IsPlantResponse(false, imageUrl, null);
     }
 }

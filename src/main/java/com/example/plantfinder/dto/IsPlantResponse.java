@@ -8,5 +8,6 @@ import lombok.Getter;
 public class IsPlantResponse {
     private Boolean isPlant;
     private String imageUrl;
+    private String name;
 
 }
