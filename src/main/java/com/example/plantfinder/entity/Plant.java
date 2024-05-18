@@ -1,21 +1,18 @@
 package com.example.plantfinder.entity;
 
-
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Document(collection = "plant")
 @Getter
 @ToString
 @Setter
-@Builder
 public class Plant {
     @Id
     private String id;
@@ -36,4 +33,13 @@ public class Plant {
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String createdAt;
+
+    public Plant(String name, String imageUrl, String location, String latitude, String longitude, String description) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.description = description;
+    }
 }
