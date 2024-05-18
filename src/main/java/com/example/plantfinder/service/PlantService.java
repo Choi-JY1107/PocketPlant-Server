@@ -1,17 +1,17 @@
 package com.example.plantfinder.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.plantfinder.data.Description;
 import com.example.plantfinder.dto.PlantResponse;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.plantfinder.dto.IsPlantResponse;
 import com.example.plantfinder.dto.PlantAddRequest;
+import com.example.plantfinder.dto.PlantResponse;
 import com.example.plantfinder.entity.Plant;
 import com.example.plantfinder.repository.PlantRepository;
 
@@ -37,16 +37,14 @@ public class PlantService {
     }
 
     public PlantResponse savePlant(final PlantAddRequest plantAddRequest) {
-
-
-        var plant = Plant.builder()
-            .name(plantAddRequest.getName())
-            .imageUrl(plantAddRequest.getImageUrl())
-            .latitude(plantAddRequest.getLatitude())
-            .longitude(plantAddRequest.getLongitude())
-            .location(plantAddRequest.getLocation())
-            .description(plantAddRequest.getDescription())
-            .build();
+        final Plant plant = Plant.builder()
+                .name(plantAddRequest.getName())
+                .imageUrl(plantAddRequest.getImageUrl())
+                .latitude(plantAddRequest.getLatitude())
+                .longitude(plantAddRequest.getLongitude())
+                .location(plantAddRequest.getLocation())
+                .description(plantAddRequest.getDescription())
+                .build();
 
         plantRepository.save(plant);
 
@@ -89,18 +87,9 @@ public class PlantService {
         ArrayList response = restTemplate.postForObject(url, request, ArrayList.class);
 
         for (Object object : response) {
-            if (object.toString().equals("Fruit")){
-                checkPlant(imageUrl);
-                isPlant = true;
-                break;
-            }
-            else if(object.toString().equals("Plant")){
-                checkPlant(imageUrl);
-                isPlant = true;
-                break;
-
-            }
-            else if(object.toString().equals("Flower")){
+            if (object.toString().equals("Fruit")
+                    || object.toString().equals("Plant")
+                    || object.toString().equals("Flower")) {
                 checkPlant(imageUrl);
                 isPlant = true;
                 break;
