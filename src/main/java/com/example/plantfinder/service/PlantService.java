@@ -1,9 +1,11 @@
 package com.example.plantfinder.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.plantfinder.data.Description;
 import com.example.plantfinder.dto.PlantResponse;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class PlantService {
     private final PlantRepository plantRepository;
+
 
     public List<PlantResponse> getAllPlants() {
         return plantRepository.findAll().stream().map(PlantResponse::new).toList();
@@ -108,9 +111,9 @@ public class PlantService {
 
         if (isPlant){
             var name = checkPlant(imageUrl);
-            return new IsPlantResponse(true, imageUrl, name);
+            return new IsPlantResponse(true, imageUrl, name, Description.plantDescriptions.get(name));
         }
-        return new IsPlantResponse(false, imageUrl, null);
+        return new IsPlantResponse(false, imageUrl, null, null);
     }
 
     public List<PlantResponse> getPlantsByLocation(String location){
