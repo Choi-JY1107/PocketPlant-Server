@@ -1,4 +1,4 @@
-# Plant Pocket
+# Pocket Plant
 2024 중앙대학교 Zeropage & Clug 연합 UNION 해커톤 1등 수상작
 
 <img src="https://github.com/Choi-JY1107/2024-Union-Hackathon/assets/52996979/afe4d457-9b98-427e-871f-0d6b4d8e1e3f">
@@ -34,9 +34,6 @@
 
 ## API 명세(APIdog)
 ![apidog](https://github.com/Choi-JY1107/2024-Union-Hackathon/assets/52996979/ef2f7fcb-67f9-485f-9d95-c86065a47c02)
-
----
-# 🎥 앱 시연 영상
 
 
 
