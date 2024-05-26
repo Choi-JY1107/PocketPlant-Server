@@ -1,8 +1,12 @@
 # Plant Pocket
+2024 중앙대학교 Zeropage & Clug 연합 UNION 해커톤 1등 수상작
+
 <img src="https://github.com/Choi-JY1107/2024-Union-Hackathon/assets/52996979/afe4d457-9b98-427e-871f-0d6b4d8e1e3f">
+
 ###### Pocket Plan은 사용자가 주변환경에 관심을 가질 수 있도록 도움을 주는 앱입니다. 
 ###### 앱내에서 주변에 다른 사용자가 찾은 식물들을 알 수 있고, 직접 찍은 사진을 업로드하여 어떤 식물인지 확인할 수 있습니다.
 - [프론트엔드 링크](https://github.com/jaeho0718/PocketPlant-iOS)
+- [API Rekoginition 관련 링크](https://github.com/easyhak/pocket-garden-rokognition)
 - [Figma 링크](https://www.figma.com/file/Q7PQwSfNSj6eLwc7GMCHKM?embed_host=notion&kind=file&node-id=0%3A1&t=u3Q1FMSMLWV5wOmP-1&viewer=1)
 
 ---
@@ -27,3 +31,12 @@
 
 ## Tool
 ![Tool](https://github.com/Choi-JY1107/2024-Union-Hackathon/assets/52996979/b23b6b45-fa7c-4b54-9e28-a952a77e9f3e)
+
+## API 명세(APIdog)
+![apidog](https://github.com/Choi-JY1107/2024-Union-Hackathon/assets/52996979/ef2f7fcb-67f9-485f-9d95-c86065a47c02)
+
+---
+# 🎥 앱 시연 영상
+
+
+
